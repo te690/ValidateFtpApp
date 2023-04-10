@@ -1,0 +1,68 @@
+﻿@model ValidateFtpApp.Models.FtpServerDetails
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h5>Validate PPK</h5>
+@if (TempData["errorMSG"] != null)
+{
+    @TempData["errorMSG"].ToString()
+}
+
+<form method="post" asp-controller="ValidateFtp" asp-action="Index" id="frmValidatePPK" enctype="multipart/form-data">
+    <!-- 2 column grid layout with text inputs for the first and last names -->
+    <div class="row mb-4">
+        <div class="col">
+            <div class="form-outline">
+                <input type="text" asp-for="Host" class="form-control Host" />
+                <label class="form-label" for="form6Example1">Host</label>
+            </div>
+        </div>
+        <div class="col">
+            <div class="form-outline">
+                <input type="text" asp-for="Port" class="form-control Port" />
+                <label class="form-label" for="form6Example2">Port</label>
+            </div>
+        </div>
+    </div>
+
+    <!-- Text input -->
+    <div class="row form-outline mb-4">
+        <div class="col">
+            <div class="form-outline">
+                <input type="text" asp-for="UserName" class="form-control UserName" />
+                <label class="form-label" for="form6Example3">User Name</label>
+            </div>
+        </div>
+        <div class="col">
+            <div class="form-outline">
+                <div class="mb-10">
+                    <div class="mb-10">
+                        <input type="text" id="form6Example4" asp-for="SshHostKeyFingerprint" class="form-control SshHostKeyFingerprint" readonly/>
+                    </div>
+                    <div class="mb-2">
+                       
+                    </div>
+                </div>
+                <div class="mb-2">
+                    <label class="form-label" for="form6Example4">Ssh Host Key Fingerprint</label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row form-outline mb-4">
+        <div class="col">
+            <div class="form-outline">
+                <span>Select File:</span>
+                <input type="file" asp-for="postedFile" />
+            </div>
+        </div>
+        <div class="col">
+            <div class="form-outline">
+                <input type="submit" class="btn btn-primary btnValidate" value="Validate" id="btnValidate" />
+                <input type="button" class="btn btn-primary btnCheckSshHostKeyFingerprint" value="Get Ssh Host Key Fingerprint" id="btnCheckSshHostKeyFingerprint" />
+            </div>
+        </div>
+    </div>
+    <!-- Submit button -->
+</form>
